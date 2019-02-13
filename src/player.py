@@ -9,4 +9,8 @@ class Player:
         if newroom == None:
             print('\n \n INVALID MOVE: You cannot move here.')
         else:
-            self.room = newroom 
+            self.room = newroom
+    def get_item(self, item):
+        pass
+    def drop_item(self, item):
+        pass
