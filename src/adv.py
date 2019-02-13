@@ -48,7 +48,13 @@ p = Player(room["outside"])
 # * Waits for user input and decides what to do.
 while True:
     location = p.room
-    print(location)
+    print(f"Your presence graces the {location.name}. \n {location.description}")
+    action = input("Where will you move?")
+    
+    
+    if action == 'q':
+        break
+    
 
 
 #
