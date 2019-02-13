@@ -75,7 +75,11 @@ while True:
         elif action == 'west':
             p.move(p.room.w_to)
     else:
-        if action[0]
+        action = action[0]
+        item = action[1]
+        if action == 'get':
+            p.get_item(item)
+
 
 
 

@@ -10,9 +10,12 @@ class Room():
         self.w_to = None
         self.e_to = None
         self.items = []
-        self.item_list = [i.name for i in self.items]
+        self.item_list = []
     
     def add_item(self, item):
         self.items.append(item)
+        self.item_list = [i.name for i in self.items]
+    def remove_item(self, item):
+        self.items.remove(item)
         self.item_list = [i.name for i in self.items]
 
