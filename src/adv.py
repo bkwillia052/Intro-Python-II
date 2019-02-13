@@ -48,14 +48,22 @@ p = Player(room["outside"])
 # * Waits for user input and decides what to do.
 while True:
     location = p.room
-    print(f"Your presence graces the {location.name}. \n {location.description}")
-    action = input("Where will you move?")
+    print('=== \n')
+    print(f"Your presence now graces the {location.name}. \n {location.description}")
+        
+    action = input("Which direction will you move? (North|South|East|West): \n").lower()
     
     
     if action == 'q':
         break
-    
-
+    elif action == 'north':
+        p.move(p.room.n_to)
+    elif action == 'south':
+        p.move(p.room.s_to)
+    elif action == 'east':
+        p.move(p.room.e_to)
+    elif action == 'west':
+        p.move(p.room.w_to)
 
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
