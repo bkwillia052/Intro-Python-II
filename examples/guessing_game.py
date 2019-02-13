@@ -1,4 +1,8 @@
 import random
+import dis
+import ast
+
+
 
 def guessing_game():
   print("Guess the number!")
@@ -26,3 +30,7 @@ def guessing_game():
 
 if __name__ == '__main__':
   guessing_game()
+
+compile(ast.PyCF_ONLY_AST,'guessing_game.py', 'eval')
+
+""" dis.dis(guessing_game) """
