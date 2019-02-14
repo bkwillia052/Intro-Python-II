@@ -60,9 +60,9 @@ while True:
 
     
         
-    action = input("Which direction will you move? (North|South|East|West): \n").lower().split(" ")
+    action = input("\n Which direction will you move? (North|South|East|West): \n").lower().split(" ")
     
-    print(action)
+
     if len(action) == 1:
         action = action[0]
         if action == 'q':
@@ -75,12 +75,16 @@ while True:
             p.move(p.room.e_to)
         elif action == 'west':
             p.move(p.room.w_to)
+        elif action == 'i' or action == 'inventory':
+            p.list_inventory()
     else:
-        print("ACTION",action)
+        
         act = action[0]
         item = action[1]
-        if act == 'get':
+        if act == 'get' or act == "take":
             p.get_item(item)
+        elif act == 'drop':
+            p.drop_item(item)
 
 
 
