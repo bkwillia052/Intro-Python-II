@@ -11,11 +11,22 @@ class Room():
         self.e_to = None
         self.items = []
         self.item_list = []
+
+    def __str__(self):
+        return f'\n{self.name}\n\n    {self.description}\n\n'
     
     def add_item(self, item):
-        self.items.append(item)
-        self.item_list = [i.name for i in self.items]
+        self.items.append(item.__dict__)
+        self.item_list = [i["name"] for i in self.items]
     def remove_item(self, item):
-        self.items.remove(item)
-        self.item_list = [i.name for i in self.items]
+        print("itemgetted",item)
+        chosen_item = list(filter(lambda i: i["name"].lower() == item, self.items))[0]
+        
+        print("chosen-item",chosen_item)
+        if not chosen_item:
+            print("No such item exists!")
+        else:
+            self.items.remove(chosen_item)
+            self.item_list = [i["name"] for i in self.items]
+            return chosen_item
 
