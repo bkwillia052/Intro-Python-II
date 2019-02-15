@@ -1,5 +1,7 @@
 from room import Room
-
+from player import Player
+import textwrap
+from item import Item
 # Declare all the rooms
 
 room = {
@@ -32,18 +34,61 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
-
+room['treasure'].add_item(Item("Medallion", "A golden & gemstone medallion"))
+room['foyer'].add_item(Item("Medallion", "A golden & gemstone medallion"))
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+p = Player(room["outside"])
 
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
+while True:
+    room = p.room
+    items = room.item_list 
+
+    print('=== \n')
+    print(f"Your presence now graces the {room.name}. \n  {room.description}")
+    
+    if items:
+        print(f"There are items here!: {items}")
+
+    
+        
+    action = input("\n Which direction will you move? (North|South|East|West): \n").lower().split(" ")
+    
+
+    if len(action) == 1:
+        action = action[0]
+        if action == 'q':
+            break
+        elif action == 'north':
+            p.move(p.room.n_to)
+        elif action == 'south':
+            p.move(p.room.s_to)
+        elif action == 'east':
+            p.move(p.room.e_to)
+        elif action == 'west':
+            p.move(p.room.w_to)
+        elif action == 'i' or action == 'inventory':
+            p.list_inventory()
+    else:
+        
+        act = action[0]
+        item = action[1]
+        if act == 'get' or act == "take":
+            p.get_item(item)
+        elif act == 'drop':
+            p.drop_item(item)
+
+
+
+
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
